@@ -1,28 +1,27 @@
+<!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
         <title>TurnOnNookLight</title>
         <link rel="icon" type="image/svg+xml" href="/TurnOnNookLight/lightbulb.svg">
-        <script>
-            var data = "{\r\n    \"entity_id\": \"light.attic_nook_overhead_2\",\r\n    \"brightness\": 50\r\n}";
-            var localBearer = localStorage.getItem("bearer")
-            var localURL = localStorage.getItem("url")
-
-            var xhr = new XMLHttpRequest();
-            //xhr.withCredentials = true;
-
-            xhr.addEventListener("readystatechange", function() {
-            if(this.readyState === 4) {
-                console.log(this.responseText);
-            }
-            });
-
-            xhr.open("POST", localURL);
-            xhr.setRequestHeader("Authorization", localBearer);
-            xhr.setRequestHeader("Content-Type", "text/plain");
-
-            xhr.send(data);
-        </script>
+        <script type="text/javascript" src="main.js"></script>
     </head>
-    <body onload="console.log('ok')">
+    <body onload=onLoadActions()>
+        <div id="status">
+        </div>
+        <div id="formDiv">
+            <form id="siteParams">
+                <h1>Store site-specific Parameters:</h1>
+                <label for="url" >URL</label>
+                <input type="text" id="url" placeholder="https://example.com" required autofocus><br>
+                <label for="bearer" >Bearer Token</label>
+                <input type="text" id="bearer" placeholder="Bearer ######" required><br>
+                <button type="submit">Submit Params</button><br>
+            </form>
+        </div>
+        <div id="buttons">
+            <button id="clearButton">Clear Site Params</button>
+        </div>
     </body>
 </html>
